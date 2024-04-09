@@ -99,8 +99,9 @@ Error generating stack: `+o.message+`
 */(function(e){(function(){var t={}.hasOwnProperty;function n(){for(var o="",i=0;i<arguments.length;i++){var u=arguments[i];u&&(o=l(o,r(u)))}return o}function r(o){if(typeof o=="string"||typeof o=="number")return o;if(typeof o!="object")return"";if(Array.isArray(o))return n.apply(null,o);if(o.toString!==Object.prototype.toString&&!o.toString.toString().includes("[native code]"))return o.toString();var i="";for(var u in o)t.call(o,u)&&o[u]&&(i=l(i,u));return i}function l(o,i){return i?o?o+" "+i:o+i:o}e.exports?(n.default=n,e.exports=n):window.classNames=n})()})(ad);var Jm=ad.exports;const qm=xa(Jm);function bm(e){return go({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{fill:"none",d:"M0 0h24v24H0z"},child:[]},{tag:"path",attr:{d:"M7 11v2h10v-2H7zm5-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"},child:[]}]})(e)}function e0(e){return go({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{fill:"none",d:"M0 0h24v24H0z"},child:[]},{tag:"path",attr:{d:"M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"},child:[]}]})(e)}function t0(e){return go({tag:"svg",attr:{viewBox:"0 0 24 24"},child:[{tag:"path",attr:{fill:"none",d:"M0 0h24v24H0z"},child:[]},{tag:"path",attr:{d:"M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-9 14-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"},child:[]}]})(e)}const n0=nn.div`
   display: grid;
   grid-template-columns: 1fr 50px;
-
+  cursor: pointer;
   border-bottom: 1px solid #ccc;
+
   & > * {
     padding: 0.6em 0;
     display: flex;
@@ -131,7 +132,7 @@ Error generating stack: `+o.message+`
     color: tomato;
     cursor: pointer;
   }
-`,r0=({item:e,onToggle:t,onRemove:n})=>{const{id:r,text:l,completed:o}=e;return j.jsxs(n0,{children:[j.jsxs("div",{className:"list",onClick:()=>t(r),children:[o?j.jsx(t0,{className:"completed"}):j.jsx(e0,{}),j.jsx("div",{className:qm("text",{completed:o}),children:l})]}),j.jsxs("div",{className:"remove",onClick:()=>n(r),children:[" ",r,j.jsx(bm,{})]})]})},l0=nn.div`
+`,r0=({item:e,onToggle:t,onRemove:n})=>{const{id:r,text:l,completed:o}=e;return j.jsxs(n0,{children:[j.jsxs("div",{className:"list",onClick:()=>t(r),children:[o?j.jsx(t0,{className:"completed"}):j.jsx(e0,{}),j.jsx("div",{className:qm("text",{completed:o}),children:l})]}),j.jsx("div",{className:"remove",onClick:()=>n(r),children:j.jsx(bm,{})})]})},l0=nn.div`
   display: flex;
   flex-direction: column;
   min-height: 320px;
@@ -148,5 +149,11 @@ Error generating stack: `+o.message+`
     justify-content: center;
     align-items: center;
     padding: 1.2em 0;
+    cursor: pointer;
+    font-weight: bolder;
+    transition: all 0.3s;
+    &:hover {
+      background-color: #868e96;
+    }
   }
 `,u0=({onRemoveCompleted:e,onRemoveAll:t})=>j.jsxs(i0,{children:[j.jsx("button",{type:"button",onClick:e,children:"완료 삭제"}),j.jsx("button",{type:"button",onClick:t,children:"전체 삭제"})]}),s0=()=>{let e=se.useRef(0);const[t,n]=se.useState([]),r=se.useCallback(h=>{const p={id:e.current,text:h,completed:!1};e.current+=1,n(t.concat(p)),console.log(t),localStorage.todos=JSON.stringify([...t,p]),localStorage.id=JSON.stringify(e.current)},[t]),l=se.useCallback(h=>{n(t.map(p=>p.id===h?{...p,completed:!p.completed}:p)),localStorage.setItem("todos",JSON.stringify(t.map(p=>p.id===h?{...p,completed:!p.completed}:p)))},[t]),o=se.useCallback(h=>{n(t.filter(p=>p.id!==h)),localStorage.setItem("todos",JSON.stringify(t.filter(p=>p.id!==h)))},[t]),i=t.length,u=t.filter(h=>h.completed).length,s=se.useCallback(()=>{n(t.filter(h=>!h.completed)),localStorage.setItem("todos",JSON.stringify(t.filter(h=>!h.completed)))},[t]),c=se.useCallback(()=>{n([]),localStorage.setItem("todos",JSON.stringify([]))},[]);return se.useEffect(()=>{const h=localStorage.todos,p=localStorage.id;h&&n(JSON.parse(h)),p&&(e.current=JSON.parse(p))},[]),j.jsxs(Fm,{children:[j.jsx(Um,{todoAll:i,todoCompleted:u}),j.jsx(Zm,{onInsert:r}),j.jsx(o0,{todos:t,onToggle:l,onRemove:o}),j.jsx(u0,{onRemoveCompleted:s,onRemoveAll:c})]})},a0=Jo.createRoot(document.getElementById("root"));a0.render(j.jsx(Pe.StrictMode,{children:j.jsx(s0,{})}));
